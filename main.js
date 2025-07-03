@@ -32,7 +32,7 @@ const readline = require("readline-sync");
 
 const hasTorch = true;
 const hasMap = false;
-const hasSword = false;
+const hasSword = true;
 
 console.log(
   "You see two paths: one leads to the mountains, the other to the village."
@@ -56,19 +56,28 @@ console.log(
     choice +
     ", you hear a strange sound and follow it to a cave opening."
 );
-const choice2 = readline.question("Do you 'enter cave' or do you turn 'back'?");
+const choice2 = readline.question("Do you 'enter cave' or do you 'turn back'?");
 
 if (choice2 === "enter cave" && hasTorch && hasSword) {
   console.log("You light your torch, draw your sword, and enter the cave.");
 } else if (choice2 === "enter cave" && !hasTorch && hasSword) {
-  console.log("You draw your sword in the dark.");
-} else if (choice2 === "back" && hasSword) {
+  console.log("You draw your sword in the dark and enter the cave.");
+} else if (choice2 === "turn back" && hasSword && hasTorch) {
   console.log("You turn around and draw your sword as you leave.");
-} else if (choice2 === "back" && !hasTorch) {
-  console.log("It's really dark and you can't see");
-}
-if (choice2 === "back" && !hasSword) {
+} else if (choice2 === "turn back" && !hasTorch && hasSword) {
   console.log("It's really dark, so you draw your sword.");
 } else {
   console.log("You get lost and wander aimlessly.");
+}
+
+console.log("You hear a voice.");
+const choice3 = readline.question("Do you 'answer' or stay 'quiet'?");
+if (choice3 === "quiet") {
+  console.log("You jump into a nearby bush and stay still.");
+} else if (choice3 === "answer") {
+  if (hasSword) {
+    console.log("You answer the voice and ready your sword.");
+  } else {
+    console.log("You hide behind a tree and answer the voice.");
+  }
 }
